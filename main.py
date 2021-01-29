@@ -56,3 +56,57 @@ print(s8 >= s7)
 print(s8.issuperset(s7))
 print(s8 > s7)
 print(s8 > s8)
+
+#################################
+
+import time
+stored_results = {}
+def sum_to_n(n):
+    start_time = time.perf_counter()
+    result = 0
+    for i in reversed(range(n)):
+        if i + 1 in stored_results:
+            print('Stopping sum at %s because we have previously computed it' % str(i + 1))
+            result += stored_results[i + 1]
+            break
+        else:
+            result += i + 1
+    stored_results[n] = result
+    print(time.perf_counter() - start_time, "seconds")
+    return result
+sum_to_n(1000000)
+
+
+def do_things():
+    start_time = time.perf_counter()
+    for i in range(10):
+        y = i ** 100
+        print(time.perf_counter() - start_time, "seconds elapsed")
+    x = 10**2
+    print(time.perf_counter() - start_time, "seconds elapsed")
+    return x
+   
+do_things()
+
+#########################################
+# lamda Function
+add_up = lambda x, y: x + y
+print(add_up(2, 5)) 
+
+# Same as ...
+
+def add_up(x, y):
+    return x + y
+print(add_up(2, 5))
+
+################################
+
+import math
+nums = [-3, -5, 1, 4]
+list(map(lambda x: 1 / (1 + math.exp(-x)), nums))
+
+##################################
+
+names = ['Ming', 'Jennifer', 'Andrew', 'Boris']
+sorted(names, key=lambda x : len(x))
+
